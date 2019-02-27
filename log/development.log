@@ -1,0 +1,2187 @@
+  [1m[35m (507.2ms)[0m  [1m[35mCREATE DATABASE "todolist-app_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (370.4ms)[0m  [1m[35mCREATE DATABASE "todolist-app_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (49.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (47.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(34377518426153490)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to DeviseCreateUsers (20181115104424)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (49.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20181115104424_devise_create_users.rb:5
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  ↳ db/migrate/20181115104424_devise_create_users.rb:39
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  ↳ db/migrate/20181115104424_devise_create_users.rb:40
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181115104424"]]
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateCategories (20181115131426)
+  [1m[35m (40.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (10.8ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "title" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20181115131426_create_categories.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181115131426"]]
+  ↳ bin/rails:9
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateTasks (20181116110123)
+  [1m[35m (40.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "title" character varying, "status" boolean DEFAULT FALSE, "deadline" timestamp, "category_id" bigint)[0m
+  ↳ db/migrate/20181116110123_create_tasks.rb:3
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE  INDEX  "index_tasks_on_category_id" ON "tasks"  ("category_id")[0m
+  ↳ db/migrate/20181116110123_create_tasks.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181116110123"]]
+  ↳ bin/rails:9
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to AddImagetoTask (20181116110124)
+  [1m[35m (39.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "tasks" ADD "image" character varying[0m
+  ↳ db/migrate/20181116110124_add_imageto_task.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181116110124"]]
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-02-27 14:38:23.315563"], ["updated_at", "2019-02-27 14:38:23.315563"]]
+  ↳ bin/rails:9
+  [1m[35m (40.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(34377518426153490)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCategory Create (1.0ms)[0m  [1m[32mINSERT INTO "categories" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Essay"], ["created_at", "2019-02-27 14:38:34.826327"], ["updated_at", "2019-02-27 14:38:34.826327"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (40.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.8ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.898762"], ["updated_at", "2019-02-27 14:38:34.898762"], ["title", "Fame Is the Spur"], ["deadline", "2019-03-12 00:00:00"], ["category_id", 1], ["image", "https://robohash.org/reprehenderitquibusdamvelit.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (41.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.8ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.945361"], ["updated_at", "2019-02-27 14:38:34.945361"], ["title", "The Monkey's Raincoat"], ["deadline", "2019-03-14 00:00:00"], ["category_id", 1], ["image", "https://robohash.org/harumadipiscinisi.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.952527"], ["updated_at", "2019-02-27 14:38:34.952527"], ["title", "Jesting Pilate"], ["deadline", "2019-03-02 00:00:00"], ["category_id", 1], ["image", "https://robohash.org/laborumtemporedignissimos.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCategory Create (0.9ms)[0m  [1m[32mINSERT INTO "categories" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Suspense/Thriller"], ["created_at", "2019-02-27 14:38:34.957548"], ["updated_at", "2019-02-27 14:38:34.957548"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.962049"], ["updated_at", "2019-02-27 14:38:34.962049"], ["title", "Fear and Trembling"], ["deadline", "2019-03-15 00:00:00"], ["category_id", 2], ["image", "https://robohash.org/incidunteumvoluptas.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.965645"], ["updated_at", "2019-02-27 14:38:34.965645"], ["title", "The Other Side of Silence"], ["deadline", "2019-03-10 00:00:00"], ["category_id", 2], ["image", "https://robohash.org/corporissedlaborum.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.969443"], ["updated_at", "2019-02-27 14:38:34.969443"], ["title", "A Farewell to Arms"], ["deadline", "2019-03-12 00:00:00"], ["category_id", 2], ["image", "https://robohash.org/iddolorqui.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Fiction narrative"], ["created_at", "2019-02-27 14:38:34.973081"], ["updated_at", "2019-02-27 14:38:34.973081"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.977246"], ["updated_at", "2019-02-27 14:38:34.977246"], ["title", "Look to Windward"], ["deadline", "2019-03-06 00:00:00"], ["category_id", 3], ["image", "https://robohash.org/maximetemporibusodit.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.3ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.981009"], ["updated_at", "2019-02-27 14:38:34.981009"], ["title", "If Not Now, When?"], ["deadline", "2019-03-05 00:00:00"], ["category_id", 3], ["image", "https://robohash.org/eosaliquidab.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 14:38:34.984763"], ["updated_at", "2019-02-27 14:38:34.984763"], ["title", "If I Forget Thee Jerusalem"], ["deadline", "2019-03-21 00:00:00"], ["category_id", 3], ["image", "https://robohash.org/quasquisquamaut.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+Started GET "/" for 127.0.0.1 at 2019-02-27 15:40:18 +0100
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/sprockets-rails-3.2.1/lib/sprockets/rails/quiet_assets.rb:13
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (40.6ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (136.7ms)
+  Rendered layouts/_navbar.html.erb (4.3ms)
+  Rendered layouts/_flash.html.erb (0.9ms)
+Completed 200 OK in 7375ms (Views: 7336.9ms | ActiveRecord: 14.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:06:05 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (18.5ms)
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (47.7ms)
+  Rendered layouts/_navbar.html.erb (0.9ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 151ms (Views: 124.4ms | ActiveRecord: 13.5ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:07:03 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eykcgX3UL6Sm29fD7JaPHvWYjD/NMmJ6s7n8h9YJGoDhuGfnYk2fH60bdHRiqWaX47bHPQTbiWeVVQFTlcUBAw==", "title"=>"Rendez-vous avec Samia", "deadline"=>"2019-03-02", "Category"=>"3", "commit"=>"Create task"}
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2019-02-27 16:07:03 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (34.6ms)
+  Rendered layouts/_navbar.html.erb (1.0ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 127ms (Views: 109.7ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2019-02-27 16:07:24 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2XeiH8WpYld7h4nCq9ZUTNQSQjiINMLSOwaGZpM58JhD5tl52jDS7HBHKnUl6b3FwjwJOkHdKc8d6nuy0PXrGw==", "user"=>{"email"=>"bere@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (46.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "bere@yahoo.com"], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Completed 401 Unauthorized in 55ms (ActiveRecord: 46.1ms)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2XeiH8WpYld7h4nCq9ZUTNQSQjiINMLSOwaGZpM58JhD5tl52jDS7HBHKnUl6b3FwjwJOkHdKc8d6nuy0PXrGw==", "user"=>{"email"=>"bere@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (6.3ms)
+  Rendered layouts/_navbar.html.erb (1.0ms)
+  Rendered layouts/_flash.html.erb (0.3ms)
+Completed 200 OK in 223ms (Views: 58.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2019-02-27 16:07:32 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.5ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (10.2ms)
+  Rendered layouts/_navbar.html.erb (0.9ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 78ms (Views: 75.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-02-27 16:07:41 +0100
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gzvkW4jcPE1SP7OKm8pHAm54F1S4e3GIznZUC5NriRdfVlPbTDUK/D7jzoHX5CT3A7ptfytmEzrYQjxQvjazqQ==", "user"=>{"email"=>"bere@yahoo.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bere@yahoo.com"], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  [1m[36mUser Create (3.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "bere@yahoo.com"], ["encrypted_password", "$2a$11$pF8WabxZ/PudzcVr97G/YObsi6UgsKGConv33fiv45Pf3fJb/cSKC"], ["created_at", "2019-02-27 15:07:41.897990"], ["updated_at", "2019-02-27 15:07:41.897990"]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Redirected to http://localhost:3000/
+Completed 302 Found in 183ms (ActiveRecord: 5.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:07:41 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.0ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (13.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.6ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 68ms (Views: 60.9ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:08:26 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wXneiQc3HTvrk8I2HmVJgB2c64xx7+NdFrNdwmrb5Mlb6KXvGK6tgOBTYYGQWqAJC7KgjrgGCEAwX6AWKRf/Sg==", "title"=>"Rendez-vous avec Samia", "deadline"=>"2019-03-02", "Category"=>"3", "commit"=>"Create task"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:08:26.808001"], ["updated_at", "2019-02-27 15:08:26.808001"], ["title", "Rendez-vous avec Samia"], ["deadline", "2019-03-02 00:00:00"], ["category_id", 3]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (215.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 232ms (ActiveRecord: 217.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:08:27 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.5ms)
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.8ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 100ms (Views: 93.6ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:16:50 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (5.7ms)
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (18.7ms)
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.1ms)
+  Rendered layouts/_flash.html.erb (0.7ms)
+Completed 200 OK in 106ms (Views: 96.8ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:18:40 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.0ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (15.3ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.8ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 85ms (Views: 78.7ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:19:17 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.4ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (15.0ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.5ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 89ms (Views: 83.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:19:23 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.3ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.2ms)
+  Rendered layouts/_flash.html.erb (0.6ms)
+Completed 200 OK in 69ms (Views: 61.8ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:21:05 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"khdaXydT0tXXrRTlERut+j2gpd1C5p6XXBULywElYvgIhiE5OMpibtxtt1KfJERzK47u34sPdYp6+fYfQul5ew==", "title"=>"Entretien avec Aleks", "deadline"=>"2019-03-06", "Category"=>"2", "commit"=>"Create task"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:21:05.197126"], ["updated_at", "2019-02-27 15:21:05.197126"], ["title", "Entretien avec Aleks"], ["deadline", "2019-03-06 00:00:00"], ["category_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 56ms (ActiveRecord: 44.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:21:05 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.3ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (13.6ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.3ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 64ms (Views: 58.3ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:22:18 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GWIST3YLpP21I4Z8bvfyJ5AsMCnIiMJW57UESJ9hQ+WD82kpaZIURr7jJcvgyBuuhgJ7KwFhKUvBWfmc3K1YZg==", "title"=>"bére", "deadline"=>"2019-02-05", "Category"=>"3", "commit"=>"Create task"}
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:22:18.073268"], ["updated_at", "2019-02-27 15:22:18.073268"], ["title", "bére"], ["deadline", "2019-02-05 00:00:00"], ["category_id", 3]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (40.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 56ms (ActiveRecord: 45.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:22:18 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (4.4ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (15.4ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.1ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 67ms (Views: 60.3ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:23:05 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"K56XNkXXdABR+nZKzLE7acn91fjAyj1Yrs+nhgbxIZqxD+xQWk7Eu1o61f1CjtLg39Oe+gkj1kWII1pSRT06GQ==", "title"=>"dsdfdv", "deadline"=>"2019-02-22", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:23:05.820654"], ["updated_at", "2019-02-27 15:23:05.820654"], ["title", "dsdfdv"], ["deadline", "2019-02-22 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (40.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 52ms (ActiveRecord: 42.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:23:05 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (1.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (4.6ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (17.6ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.6ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 69ms (Views: 62.0ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:29:59 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.2ms)
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (14.4ms)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.8ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 86ms (Views: 78.6ms | ActiveRecord: 3.5ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:30:09 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ONawpBHkbWi+PtHGFHVyXxhRgpGVUDAGTcJDQ88QzD6iR8vCDn3d07X+cnGaSpvWDn/Jk1y52xtrLr6XjNzXvQ==", "title"=>"jkkjkj", "deadline"=>"2019-02-15", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (1.7ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:30:09.111222"], ["updated_at", "2019-02-27 15:30:09.111222"], ["title", "jkkjkj"], ["deadline", "2019-02-15 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (42.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 56ms (ActiveRecord: 45.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:30:09 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.7ms)
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (14.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.2ms)
+  Rendered layouts/_flash.html.erb (1.0ms)
+Completed 200 OK in 71ms (Views: 62.0ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:32:50 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DuP3m2PudvCBvo2jrn9BwJLIBzbyAVbpNzC1I4T8PG6Ucoz9fHfGS4p+LhQgQKhJhOZMNDvovfQR3Ej3xzAn7Q==", "title"=>"hjrejkkjre", "deadline"=>"2019-02-14", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (1.8ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:32:50.240165"], ["updated_at", "2019-02-27 15:32:50.240165"], ["title", "hjrejkkjre"], ["deadline", "2019-02-14 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (42.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 57ms (ActiveRecord: 45.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:32:50 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.9ms)
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (15.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.5ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 85ms (Views: 78.8ms | ActiveRecord: 2.5ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2019-02-27 16:33:21 +0100
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"82aRRiBFsA2XJfcChSXIOeUANJ5PfPsoB4gsZTZPFJ9p9+ogP9wAtpzlVLULGiGw8y5/nIaVEDUhZNGxdYMPHA=="}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Redirected to http://localhost:3000/
+Completed 302 Found in 23ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:33:21 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.5ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (13.6ms)
+  Rendered layouts/_navbar.html.erb (1.4ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 57ms (Views: 51.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2019-02-27 16:33:26 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (8.6ms)
+  Rendered layouts/_navbar.html.erb (1.0ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 73ms (Views: 69.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2019-02-27 16:33:38 +0100
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9TEakiRy6I68LXPeKt/MqLIb5kKzaFemj65wcNtCJUtrsZOAe/vgdUIaI6FnVJbYvtNx670+EHcsYrWhZiha3A==", "user"=>{"email"=>"bere@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "bere@yahoo.com"], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Redirected to http://localhost:3000/
+Completed 302 Found in 173ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:33:38 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.3ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (11.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.2ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 54ms (Views: 49.3ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:34:27 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eWxxY75bQQYMdXRJ+34rz9iTmgV5WKwpZDNVoMUwHoZXAPke5W2CuF/ClROQcjZnFIiGomzmiMY68Yy/EiyXlg==", "title"=>"jkgfkjgk", "deadline"=>"2019-02-09", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:34:27.338499"], ["updated_at", "2019-02-27 15:34:27.338499"], ["title", "jkgfkjgk"], ["deadline", "2019-02-09 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 55ms (ActiveRecord: 43.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:34:27 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.1ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (13.5ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.1ms)
+  Rendered layouts/_flash.html.erb (0.3ms)
+Completed 200 OK in 62ms (Views: 56.3ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:34:46 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lHg2C+RfOwM2mGlgGTdYYtTtvVhkKeG7jz9GZehbof66FL52v2n4vWUviDpyO0XKGPah/3GXxVTR/Z96P0co7g==", "title"=>"bonzouti", "deadline"=>"2019-02-15", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (1.3ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:34:46.309617"], ["updated_at", "2019-02-27 15:34:46.309617"], ["title", "bonzouti"], ["deadline", "2019-02-15 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 53ms (ActiveRecord: 44.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:34:46 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.4ms)
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (15.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.3ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 67ms (Views: 61.8ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:35:15 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"C8t9xEnpWyFNU292v42Mhzn+cdmA8i2/g/ibAdAzIn8lp/W5Et+Ynx7kjizUgZEv9eVtfpVMCVDdOkIeBy+rbw==", "title"=>"polo", "deadline"=>"2019-02-06", "Category"=>"2", "commit"=>"Create task"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:35:15.553671"], ["updated_at", "2019-02-27 15:35:15.553671"], ["title", "polo"], ["deadline", "2019-02-06 00:00:00"], ["category_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (39.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 51ms (ActiveRecord: 41.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:35:15 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.1ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (14.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.5ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 61ms (Views: 55.4ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:38:12 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.9ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.0ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.0ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 94ms (Views: 86.5ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:38:18 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.5ms)
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (14.7ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.1ms)
+  Rendered layouts/_flash.html.erb (0.6ms)
+Completed 200 OK in 65ms (Views: 57.3ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:43:52 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sxeLmkZcec2zglpSMyCHRBJXKjqbi+m7PgdYTMlFmXCdewPnHWq6c+A1uwhYLJrs3kw2nY41zVRgxYFTHlkQYA==", "title"=>"hjjhjh", "deadline"=>"2019-02-08", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:43:52.377516"], ["updated_at", "2019-02-27 15:43:52.377516"], ["title", "hjjhjh"], ["deadline", "2019-02-08 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 54ms (ActiveRecord: 43.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:43:52 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.9ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.2ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 99ms (Views: 90.9ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:44:11 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hCix1qBcOhMNKlRJcxg15RVDXkMBdQ1Tj+7NMDV5/26qRDmr+2r5rV6dtRMYFChN2VhC5BTLKbzRLBQv4mV2fg==", "title"=>"ça marche", "deadline"=>"2019-02-09", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:44:11.704588"], ["updated_at", "2019-02-27 15:44:11.704588"], ["title", "ça marche"], ["deadline", "2019-02-09 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 16ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:44:11 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (5.7ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.1ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.0ms)
+  Rendered layouts/_flash.html.erb (0.9ms)
+Completed 200 OK in 75ms (Views: 68.9ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:54:09 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (5.2ms)
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (20.6ms)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.6ms)
+  Rendered layouts/_flash.html.erb (0.7ms)
+Completed 200 OK in 109ms (Views: 97.2ms | ActiveRecord: 3.9ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:54:21 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uGZShny2ugWEgWJ8eLRg+pJm1zKdjNAYriGPY9cUlhCWCtr7J4B5u9c2gyYTuH1SXn3LlYgy9Pfw41Z8AAgfAA==", "title"=>"helas !", "deadline"=>"2019-02-22", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:54:21.911278"], ["updated_at", "2019-02-27 15:54:21.911278"], ["title", "helas !"], ["deadline", "2019-02-22 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 55ms (ActiveRecord: 44.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:54:21 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (4.7ms)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (18.6ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.6ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 94ms (Views: 86.8ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:54:55 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VCU1vjAQoesIVjUs5K/Jan97w2NaL40i15dQHPLoNnl6Sb3DayZiVVvh1HaPo9TCs2DfxE+Rqc2JVYkDJfS/aQ==", "title"=>"Béré", "deadline"=>"", "Category"=>"3", "commit"=>"Create task"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.8ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "category_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-27 15:54:55.968584"], ["updated_at", "2019-02-27 15:54:55.968584"], ["title", "Béré"], ["category_id", 3]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (39.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 53ms (ActiveRecord: 42.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:54:56 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.8ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (15.0ms)
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (4.0ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 92ms (Views: 86.1ms | ActiveRecord: 2.7ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:55:14 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NL1UEDV0E1WdOEmyDx1CmdyoZUCcbcVXvJdQDWrvLoca0dxtbkLQ686PqOhkEV8xELN554nT4bjiVYkSvfOnlw==", "title"=>"polo", "deadline"=>"2019-02-14", "Category"=>"3", "commit"=>"Create task"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:55:14.972265"], ["updated_at", "2019-02-27 15:55:14.972265"], ["title", "polo"], ["deadline", "2019-02-14 00:00:00"], ["category_id", 3]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (43.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 58ms (ActiveRecord: 45.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:55:15 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.4ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (17.7ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (4.5ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 80ms (Views: 73.9ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:55:46 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"T0Mp2gwz+eKU/WykxFloxSMKV2q4Gw2S63cicLy+T4thL6GnVwU6XMdKjf6vVXVt7xFLza2lKX21tftva6LGmw==", "title"=>"ça ne marche pas", "deadline"=>"2019-02-06", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:55:46.989997"], ["updated_at", "2019-02-27 15:55:46.989997"], ["title", "ça ne marche pas"], ["deadline", "2019-02-06 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 53ms (ActiveRecord: 43.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:55:47 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.5ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.3ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.6ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 69ms (Views: 63.6ms | ActiveRecord: 2.4ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:57:43 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tX9g13pLLkqNNz3PGmaeiMnNKXsM44dgHfD6rt27zBGbE+iqIX3t9N6A3JVxaoMgBdY13Bldo49DMiOxCqdFAQ==", "title"=>"", "deadline"=>"", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (42.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 54ms (ActiveRecord: 43.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:57:43 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.8ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.6ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 89ms (Views: 82.8ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:58:00 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"U60MujCuctnLDpWq/zifBM0wkZAlbUHsxIkrjOY1Q3N9wYTHa5ixZ5i5dPCUNIKsASuNNzDTZQOaS/KTMSnKYw==", "title"=>"jhjk", "deadline"=>"2019-02-08", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:58:00.553152"], ["updated_at", "2019-02-27 15:58:00.553152"], ["title", "jhjk"], ["deadline", "2019-02-08 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 15ms (ActiveRecord: 4.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:58:00 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.3ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.9ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.9ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 70ms (Views: 63.0ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 16:58:32 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"csIfrfAEcfWJ4Pw7DvByk4q4Eoh7HRJLRk3klbVKMohcrpfQqzKyS9pXHWFl/G87RqMOL26jNqQYjz2KYla7mA==", "title"=>"hjjh", "deadline"=>"2019-02-08", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 15:58:32.355533"], ["updated_at", "2019-02-27 15:58:32.355533"], ["title", "hjjh"], ["deadline", "2019-02-08 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 55ms (ActiveRecord: 43.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 16:58:32 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (1.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (5.7ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (18.6ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.3ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 96ms (Views: 89.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:12:34 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.8ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.8ms)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.9ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 95ms (Views: 87.1ms | ActiveRecord: 3.7ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:12:54 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zVDaOG9L0OawsTxoHI3BW4gQ+w8YZk358JjMjngTjafjPFJFNH0TWOMG3TJ3gdzzRAvnqA3YaRauWhWRrw8Etw==", "title"=>"je ne suis pas en couple ", "deadline"=>"2019-02-07", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:12:54.315815"], ["updated_at", "2019-02-27 16:12:54.315815"], ["title", "je ne suis pas en couple "], ["deadline", "2019-02-07 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (42.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 56ms (ActiveRecord: 44.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:12:54 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.2ms)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (15.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.3ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 68ms (Views: 61.9ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:29:19 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.3ms)
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (18.1ms)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (4.0ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 102ms (Views: 93.8ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:35:45 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (1.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (6.1ms)
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (37.4ms)
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (5.8ms)
+  Rendered layouts/_flash.html.erb (0.7ms)
+Completed 200 OK in 197ms (Views: 175.4ms | ActiveRecord: 6.5ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:35:55 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6PWxsYU8S4kkELP1I8xK16Uj3WoNwSPpRG16NHVfxAPGmTnM3gqIN3enUq9IwFd/aTjBzRh/BwYar6MrokNNEw==", "title"=>"ggg", "deadline"=>"2019-02-01", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.7ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:35:55.627677"], ["updated_at", "2019-02-27 16:35:55.627677"], ["title", "ggg"], ["deadline", "2019-02-01 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 25ms (ActiveRecord: 5.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:35:55 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (4.7ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (20.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.4ms)
+  Rendered layouts/_flash.html.erb (0.3ms)
+Completed 200 OK in 129ms (Views: 123.1ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:37:35 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (4.3ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (19.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.4ms)
+  Rendered layouts/_flash.html.erb (0.6ms)
+Completed 200 OK in 100ms (Views: 93.9ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:37:49 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"31TS1ncZsT3Y1wNGWmnOJOVYinzNWPagY3UhHQ/HEpTxOFqrLC9yg4tg4hwxZdOMKUOW29jm0k89t/gC2NubhA==", "title"=>"nous sommes pas couple", "deadline"=>"2019-02-14", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (1.3ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:37:49.367640"], ["updated_at", "2019-02-27 16:37:49.367640"], ["title", "nous sommes pas couple"], ["deadline", "2019-02-14 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 58ms (ActiveRecord: 45.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:37:49 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.6ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (16.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.8ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 77ms (Views: 70.7ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:38:02 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zvW5QoeQtaZd1dpJJq/APMipGiHE0oAc+YV0FjZ8pVzgmTE/3KZ2GA5iOxNNo92UBLIGhtFspPOnR60J4WAsTA==", "title"=>"hjhjhj", "deadline"=>"2019-02-15", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:38:02.245366"], ["updated_at", "2019-02-27 16:38:02.245366"], ["title", "hjhjhj"], ["deadline", "2019-02-15 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 12ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:38:02 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (4.4ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (17.3ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (3.5ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 75ms (Views: 68.9ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:39:04 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"2Li7ECKw8MQ36JsvdcCeRSMwimiGEKlpS2izB82KnIn21DNteYYzemRfenUezIPt7yuWz5OujYYVqmoYGpYVmQ==", "title"=>"ça ne charge pas", "deadline"=>"2019-02-14", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (1.1ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:39:04.990155"], ["updated_at", "2019-02-27 16:39:04.990155"], ["title", "ça ne charge pas"], ["deadline", "2019-02-14 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 57ms (ActiveRecord: 44.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:39:05 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (4.8ms)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (17.6ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.8ms)
+  Rendered layouts/_flash.html.erb (0.3ms)
+Completed 200 OK in 77ms (Views: 68.3ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2019-02-27 17:44:59 +0100
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/sprockets-rails-3.2.1/lib/sprockets/rails/quiet_assets.rb:13
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (1.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/tasks/index.html.erb:6
+  Rendered tasks/index.html.erb within layouts/application (30.6ms)
+Completed 500 Internal Server Error in 120ms (ActiveRecord: 10.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `content' for #<Task:0x00007feacbb46690>):
+    4:       <h1 class="title">Tasks</h1>
+    5:       <ul>
+    6:         <% @tasks.each do |task| %>
+    7:         <li><%= task.content %> by <%= task.author  %></li>
+    8:         <% end %>
+    9:       </ul>
+   10:     <div>
+  
+app/views/tasks/index.html.erb:7:in `block in _app_views_tasks_index_html_erb___3193046459310496427_70323237772620'
+app/views/tasks/index.html.erb:6:in `_app_views_tasks_index_html_erb___3193046459310496427_70323237772620'
+Started GET "/tasks" for 127.0.0.1 at 2019-02-27 17:45:04 +0100
+Processing by TasksController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/tasks/index.html.erb:6
+  Rendered tasks/index.html.erb within layouts/application (12.9ms)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `content' for #<Task:0x00007feacca88b58>):
+    4:       <h1 class="title">Tasks</h1>
+    5:       <ul>
+    6:         <% @tasks.each do |task| %>
+    7:         <li><%= task.content %> by <%= task.author  %></li>
+    8:         <% end %>
+    9:       </ul>
+   10:     <div>
+  
+app/views/tasks/index.html.erb:7:in `block in _app_views_tasks_index_html_erb___3193046459310496427_70323216320860'
+app/views/tasks/index.html.erb:6:in `_app_views_tasks_index_html_erb___3193046459310496427_70323216320860'
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:45:17 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.7ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (16.2ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (54.8ms)
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (4.9ms)
+  Rendered layouts/_flash.html.erb (0.8ms)
+Completed 200 OK in 748ms (Views: 725.8ms | ActiveRecord: 6.6ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:45:54 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yWu5Y5EBCeHavIlwny2IyedlIAB/CU/LIwx+bTixZ8vnBzEeyjfKX4kLaCr0IZVhK348p2q3ayR9zqdy763u2w==", "title"=>"Polo est un . dragueur", "deadline"=>"2019-02-27", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (42.2ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:45:54.372716"], ["updated_at", "2019-02-27 16:45:54.372716"], ["title", "Polo est un . dragueur"], ["deadline", "2019-02-27 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 53ms (ActiveRecord: 45.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:45:54 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.3ms)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (1.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (1.0ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (19.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.0ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 69ms (Views: 61.8ms | ActiveRecord: 3.6ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:46:07 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"C45Tch95SRFQvSabl/5CeC33LwNCILkZKm6fxoW8Lywl4tsPRE+KrwMKx8H88l/Q4ewzpFeenfZ0rEbZUqCmPA==", "title"=>"fjjkfjkk", "deadline"=>"2019-02-05", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (1.1ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:46:07.047925"], ["updated_at", "2019-02-27 16:46:07.047925"], ["title", "fjjkfjkk"], ["deadline", "2019-02-05 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 54ms (ActiveRecord: 44.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:46:07 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.0ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (17.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.5ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 72ms (Views: 66.6ms | ActiveRecord: 2.2ms)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (526.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "todolist-app_development"[0m
+  ↳ bin/rails:9
+  [1m[35m (229.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "todolist-app_test"[0m
+  ↳ bin/rails:9
+  [1m[35m (563.9ms)[0m  [1m[35mCREATE DATABASE "todolist-app_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (377.8ms)[0m  [1m[35mCREATE DATABASE "todolist-app_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:48:04 +0100
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.2.1) lib/active_record/migration.rb:579:in `check_pending!'
+activerecord (5.2.1) lib/active_record/migration.rb:556:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:48:08 +0100
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.2.1) lib/active_record/migration.rb:579:in `check_pending!'
+activerecord (5.2.1) lib/active_record/migration.rb:556:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:48:11 +0100
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.2.1) lib/active_record/migration.rb:579:in `check_pending!'
+activerecord (5.2.1) lib/active_record/migration.rb:556:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.6) lib/rack/method_override.rb:22:in `call'
+rack (2.0.6) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.6) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (101.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (44.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(34377518426153490)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to DeviseCreateUsers (20181115104424)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (34.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20181115104424_devise_create_users.rb:5
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  ↳ db/migrate/20181115104424_devise_create_users.rb:39
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  ↳ db/migrate/20181115104424_devise_create_users.rb:40
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181115104424"]]
+  ↳ bin/rails:9
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateCategories (20181115131426)
+  [1m[35m (40.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "title" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20181115131426_create_categories.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181115131426"]]
+  ↳ bin/rails:9
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateTasks (20181116110123)
+  [1m[35m (24.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" bigserial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "title" character varying, "status" boolean DEFAULT FALSE, "deadline" timestamp, "category_id" bigint)[0m
+  ↳ db/migrate/20181116110123_create_tasks.rb:3
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE  INDEX  "index_tasks_on_category_id" ON "tasks"  ("category_id")[0m
+  ↳ db/migrate/20181116110123_create_tasks.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181116110123"]]
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to AddImagetoTask (20181116110124)
+  [1m[35m (40.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "tasks" ADD "image" character varying[0m
+  ↳ db/migrate/20181116110124_add_imageto_task.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20181116110124"]]
+  ↳ bin/rails:9
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-02-27 16:48:35.256156"], ["updated_at", "2019-02-27 16:48:35.256156"]]
+  ↳ bin/rails:9
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(34377518426153490)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:48:47 +0100
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/sprockets-rails-3.2.1/lib/sprockets/rails/quiet_assets.rb:13
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (10.1ms)
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (21.7ms)
+  [1m[36mUser Load (227.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (247.8ms)
+  Rendered layouts/_flash.html.erb (0.9ms)
+Completed 200 OK in 833ms (Views: 562.6ms | ActiveRecord: 239.0ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:49:10 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"u8yKI+tDDkK3B7rZu252RFe2OgRbsI6nOjjDG5hFDbqVoAJesHXN/OSwW4PQYmvsm60mo04Oqkhk+hoET1mEqg==", "title"=>"Polo est amoureux d'Aleks", "deadline"=>"2019-02-27", "commit"=>"Create task"}
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2019-02-27 17:49:10 +0100
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (2.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (27.7ms)
+  Rendered layouts/_navbar.html.erb (1.0ms)
+  Rendered layouts/_flash.html.erb (0.5ms)
+Completed 200 OK in 113ms (Views: 96.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2019-02-27 17:49:15 +0100
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.5ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_navbar.html.erb (0.8ms)
+  Rendered layouts/_flash.html.erb (0.7ms)
+Completed 200 OK in 68ms (Views: 64.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2019-02-27 17:49:30 +0100
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bG3StvGWEAJIsVZWbURQP/DtV3aWpZix7EebbGXQArRc1iKKtWdpbRqOMwZtdj7QCLen0CdztJiXMQrq2zmo6w==", "user"=>{"email"=>"polo@yahoo.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "polo@yahoo.com"], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["email", "polo@yahoo.com"], ["encrypted_password", "$2a$11$0v5uurFK566K8TPqsuGVleMim62HX5/Az9pteQv7vguJXF.IrOzUy"], ["created_at", "2019-02-27 16:49:30.772829"], ["updated_at", "2019-02-27 16:49:30.772829"]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Redirected to http://localhost:3000/
+Completed 302 Found in 174ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:49:30 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.6ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (7.9ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (4.9ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 51ms (Views: 47.3ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:49:54 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nrdqnMIoaB81v4iENluJdneBzyO3hposDAbuAkhiCkmw2+LhmR6roWYIad5dV5Teu5rThKI4vsNSxDcdn36DWQ==", "title"=>"Polo est amoureux d'Aleks, yeah!!!", "deadline"=>"2019-02-27", "commit"=>"Create task"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :commit
+Completed 400 Bad Request in 20ms (ActiveRecord: 4.2ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: Category):
+  
+app/controllers/tasks_controller.rb:53:in `category_params'
+app/controllers/tasks_controller.rb:9:in `create'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCategory Create (1.6ms)[0m  [1m[32mINSERT INTO "categories" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Narrative nonfiction"], ["created_at", "2019-02-27 16:51:05.693132"], ["updated_at", "2019-02-27 16:51:05.693132"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (36.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.9ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.770753"], ["updated_at", "2019-02-27 16:51:05.770753"], ["title", "Tirra Lirra by the River"], ["deadline", "2019-03-05 00:00:00"], ["category_id", 1], ["image", "https://robohash.org/officiisexcepturiquidem.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (41.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.816610"], ["updated_at", "2019-02-27 16:51:05.816610"], ["title", "Gone with the Wind"], ["deadline", "2019-03-17 00:00:00"], ["category_id", 1], ["image", "https://robohash.org/facereabexcepturi.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.822347"], ["updated_at", "2019-02-27 16:51:05.822347"], ["title", "Pale Kings and Princes"], ["deadline", "2019-03-03 00:00:00"], ["category_id", 1], ["image", "https://robohash.org/magnamvoluptasunde.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCategory Create (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Horror"], ["created_at", "2019-02-27 16:51:05.827913"], ["updated_at", "2019-02-27 16:51:05.827913"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.833670"], ["updated_at", "2019-02-27 16:51:05.833670"], ["title", "The Golden Apples of the Sun"], ["deadline", "2019-03-18 00:00:00"], ["category_id", 2], ["image", "https://robohash.org/hicporrosint.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.839579"], ["updated_at", "2019-02-27 16:51:05.839579"], ["title", "A Many-Splendoured Thing"], ["deadline", "2019-03-01 00:00:00"], ["category_id", 2], ["image", "https://robohash.org/enimdelectussunt.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.845567"], ["updated_at", "2019-02-27 16:51:05.845567"], ["title", "The Far-Distant Oxus"], ["deadline", "2019-03-08 00:00:00"], ["category_id", 2], ["image", "https://robohash.org/ipsamfaciliset.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:11
+  [1m[36mCategory Create (0.5ms)[0m  [1m[32mINSERT INTO "categories" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Speech"], ["created_at", "2019-02-27 16:51:05.850938"], ["updated_at", "2019-02-27 16:51:05.850938"]]
+  ↳ db/seeds.rb:11
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:11
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.856640"], ["updated_at", "2019-02-27 16:51:05.856640"], ["title", "Many Waters"], ["deadline", "2019-03-02 00:00:00"], ["category_id", 3], ["image", "https://robohash.org/quiaearumeius.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.862415"], ["updated_at", "2019-02-27 16:51:05.862415"], ["title", "O Jerusalem!"], ["deadline", "2019-03-09 00:00:00"], ["category_id", 3], ["image", "https://robohash.org/inventoreenimenim.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:17
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id", "image") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["created_at", "2019-02-27 16:51:05.868341"], ["updated_at", "2019-02-27 16:51:05.868341"], ["title", "In Dubious Battle"], ["deadline", "2019-03-20 00:00:00"], ["category_id", 3], ["image", "https://robohash.org/temporaauttotam.png?size=300x300&set=set1"]]
+  ↳ db/seeds.rb:17
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:17
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:51:17 +0100
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/sprockets-rails-3.2.1/lib/sprockets/rails/quiet_assets.rb:13
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (1.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (36.3ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (95.5ms)
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (18.4ms)
+  Rendered layouts/_flash.html.erb (0.6ms)
+Completed 200 OK in 739ms (Views: 691.8ms | ActiveRecord: 18.8ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:52:12 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"h17fYPw+efXoF+pVJ4XXrBN1IUzwtUFkMG+f76tiM1SpMlcdpwi6S7ugCw9MicoE32496+ULZYturUbwfH66RA==", "title"=>"Polo est amoureux d'Aleks !!! yeah, je vous vois bien ensemble", "deadline"=>"2019-02-27", "Category"=>"2", "commit"=>"Create task"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (2.0ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:52:13.012719"], ["updated_at", "2019-02-27 16:52:13.012719"], ["title", "Polo est amoureux d'Aleks !!! yeah, je vous vois bien ensemble"], ["deadline", "2019-02-27 00:00:00"], ["category_id", 2]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (40.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 59ms (ActiveRecord: 43.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:52:13 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (2.4ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (13.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.8ms)
+  Rendered layouts/_flash.html.erb (0.3ms)
+Completed 200 OK in 85ms (Views: 80.0ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:52:38 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jJCD/Iy94qyKU9ieTVVH2YuhdaxtCrfIs7Fgrl14D/Oi/AuB14shEtnkOcQmWVpxR7ppC3i0kyftc7mximSG4w==", "title"=>"polo", "deadline"=>"2019-02-05", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:52:38.056489"], ["updated_at", "2019-02-27 16:52:38.056489"], ["title", "polo"], ["deadline", "2019-02-05 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (41.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 55ms (ActiveRecord: 43.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:52:38 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (4.6ms)
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (15.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.6ms)
+  Rendered layouts/_flash.html.erb (0.4ms)
+Completed 200 OK in 71ms (Views: 64.8ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2019-02-27 17:52:54 +0100
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kOGL5bgmcrTqa9wcpYcv6FwAQtlXqDsVOZ3SeLw3vNi+jQOY4xCxCrncPUbOizJAkBtefkIWH/pnXwtnays1yA==", "title"=>"bere", "deadline"=>"2019-02-14", "Category"=>"1", "commit"=>"Create task"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/mathieupierre/.rvm/rubies/ruby-2.5.1/lib/ruby/gems/2.5.0/gems/rack-2.0.6/lib/rack/tempfile_reaper.rb:15
+Unpermitted parameters: :utf8, :authenticity_token, :Category, :commit
+  [1m[36mCategory Load (0.9ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:9
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[36mTask Create (1.0ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "title", "deadline", "category_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2019-02-27 16:52:54.087275"], ["updated_at", "2019-02-27 16:52:54.087275"], ["title", "bere"], ["deadline", "2019-02-14 00:00:00"], ["category_id", 1]]
+  ↳ app/controllers/tasks_controller.rb:11
+  [1m[35m (224.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/tasks_controller.rb:11
+Redirected to http://localhost:3000/
+Completed 302 Found in 242ms (ActiveRecord: 227.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2019-02-27 17:52:54 +0100
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/views/layouts/_task_form.html.erb:18
+  Rendered layouts/_task_form.html.erb (3.4ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 1]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 2]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."category_id" = $1[0m  [["category_id", 3]]
+  ↳ app/views/home/index.html.erb:9
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks"[0m
+  ↳ app/views/home/index.html.erb:25
+  Rendered home/index.html.erb within layouts/application (14.1ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_navbar.html.erb:9
+  Rendered layouts/_navbar.html.erb (2.6ms)
+  Rendered layouts/_flash.html.erb (0.3ms)
+Completed 200 OK in 79ms (Views: 72.8ms | ActiveRecord: 2.3ms)
+
+

@@ -1,0 +1,21 @@
+<div class="">
+
+    <div class="tasks">
+      <h1 class="title">Tasks</h1>
+      <ul>
+        <% @tasks.each do |task| %>
+        <li><%= task.content %> by <%= task.author  %></li>
+        <% end %>
+      </ul>
+    <div>
+
+    <%= form_tag(tasks_path, method: :post, class: "form", remote: true) do %>
+      <%= label_tag 'Contenu' %>
+      <%= text_field_tag  :content %><br>
+      <%= label_tag 'Auteur' %>
+      <%= text_field_tag  :author %>
+      <%= submit_tag 'save', :name => 'commit', :class => 'btn-submit'%>
+    <% end %>
+
+  </div>
+</div>
